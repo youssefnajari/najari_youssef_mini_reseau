@@ -362,6 +362,122 @@
         .interaction-buttons span.liked {
             animation: likeAnimation 0.4s ease;
         }
+
+        /* Commentaires */
+        .comments-section {
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .comments-section.show {
+            display: block;
+        }
+
+        .comment {
+            display: flex;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: var(--color-light);
+            border-radius: var(--card-border-radius);
+        }
+
+        .comment .profile-picture {
+            width: 2rem;
+            flex-shrink: 0;
+        }
+
+        .comment-content {
+            flex: 1;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.3rem;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .comment-time {
+            font-size: 0.7rem;
+            color: var(--color-gray);
+        }
+
+        .comment-text {
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .comment-action {
+            font-size: 0.7rem;
+            color: var(--color-gray);
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+
+        .comment-action:hover {
+            color: var(--color-primary);
+        }
+
+        .add-comment {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .add-comment .profile-picture {
+            width: 2rem;
+        }
+
+        .add-comment input {
+            flex: 1;
+            background: var(--color-light);
+            border-radius: var(--border-radius);
+            padding: 0.8rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .add-comment button {
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .add-comment button:hover {
+            opacity: 0.8;
+        }
+
+        .view-comments {
+            color: var(--color-gray);
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            transition: color 0.2s ease;
+        }
+
+        .view-comments:hover {
+            color: var(--color-primary);
+        }
+
+        .comments-container {
+            margin-bottom: 1rem;
+        }
         /*right*/
         main .container .right{
             height: max-content;
@@ -584,6 +700,14 @@
             .right .messages .category h6 {
                 width: auto;
             }
+
+            .add-comment {
+                flex-direction: column;
+            }
+
+            .add-comment button {
+                width: 100%;
+            }
         }
 
         @media screen and (max-width: 480px) {
@@ -666,6 +790,15 @@
             .left .notifications-popup {
                 width: 90vw;
                 max-width: 300px;
+            }
+
+            .comment {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .comment .profile-picture {
+                align-self: center;
             }
         }
 
@@ -812,7 +945,7 @@
                 <input type="submit" value="Ajouter" class="btn btn-primary">
             </form>
             <div class="feeds">
-                <div class="feed">
+                <div class="feed" data-post-id="1">
                     <div class="head">
                         <div class="user">
                             <div class="profile-picture">
@@ -835,7 +968,7 @@
                     <div class="action-buttons">
                         <div class="interaction-buttons">
                             <span class="bb"><img src="./images/like.png" class="bm"></span>
-                            <span class="bb"><img src="./images/cmnt.png" alt="" srcset="" class="bm"></span>
+                            <span class="bb comment-btn"><img src="./images/cmnt.png" alt="" srcset="" class="bm"></span>
                             <span class="bb"><img src="./images/share.png" alt="" srcset="" class="bm"></span>
                         </div>
                         <div class="bookmark">
@@ -848,13 +981,56 @@
                         <span><img src="./images/pfp5.jpeg" alt="" srcset=""></span>
                         <p>Aimé par <b>Abdelaziz</b> et <b>25 autres</b></p>
                     </div>
-                    <div class="text-muted">Voir les 2 commentaires</div>
+                    <div class="view-comments" data-post="1">Voir les 2 commentaires</div>
+                    <div class="comments-section" id="comments-1">
+                        <div class="comments-container">
+                            <div class="comment">
+                                <div class="profile-picture">
+                                    <img src="./images/pfp4.jpeg">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">Abdelaziz</span>
+                                        <span class="comment-time">Il y a 2h</span>
+                                    </div>
+                                    <p class="comment-text">Magnifique photo ! Où as-tu pris cette photo ?</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Répondre</span>
+                                        <span class="comment-action">Aimer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="profile-picture">
+                                    <img src="./images/pfp8.jpeg">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">Molka</span>
+                                        <span class="comment-time">Il y a 1h</span>
+                                    </div>
+                                    <p class="comment-text">J'adore les couleurs ! 😍</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Répondre</span>
+                                        <span class="comment-action">Aimer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <div class="profile-picture">
+                                <img src="./images/pfp.jpg">
+                            </div>
+                            <input type="text" placeholder="Ajouter un commentaire..." class="comment-input">
+                            <button class="post-comment-btn" data-post="1">Publier</button>
+                        </div>
+                    </div>
                     <caption>
                         <p><b>Mohamed Abdallah</b> Terre ancienne aux paysages magnifiques, au cœur d'une quête d'identité.</p>
                     </caption>
 
                 </div>
-                <div class="feed">
+                <div class="feed" data-post-id="2">
                     <div class="head">
                         <div class="user">
                             <div class="profile-picture">
@@ -877,7 +1053,7 @@
                     <div class="action-buttons">
                         <div class="interaction-buttons">
                             <span class="bb"><img src="./images/like.png" class="bm"></span>
-                            <span class="bb"><img src="./images/cmnt.png" alt="" srcset="" class="bm"></span>
+                            <span class="bb comment-btn"><img src="./images/cmnt.png" alt="" srcset="" class="bm"></span>
                             <span class="bb"><img src="./images/share.png" alt="" srcset="" class="bm"></span>
                         </div>
                         <div class="bookmark">
@@ -890,7 +1066,66 @@
                         <span><img src="./images/pfp6.jpeg" alt="" srcset=""></span>
                         <p>Aimé par <b>Molka</b> et <b>2548 autres</b></p>
                     </div>
-                    <div class="text-muted">Voir les 25 commentaires</div>
+                    <div class="view-comments" data-post="2">Voir les 25 commentaires</div>
+                    <div class="comments-section" id="comments-2">
+                        <div class="comments-container">
+                            <div class="comment">
+                                <div class="profile-picture">
+                                    <img src="./images/pfp7.jpeg">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">Molka</span>
+                                        <span class="comment-time">Il y a 5h</span>
+                                    </div>
+                                    <p class="comment-text">Waouh ! Quelle vue incroyable ! 🌅</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Répondre</span>
+                                        <span class="comment-action">Aimer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="profile-picture">
+                                    <img src="./images/pfp2.jpeg">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">Mohamed Abdallah</span>
+                                        <span class="comment-time">Il y a 3h</span>
+                                    </div>
+                                    <p class="comment-text">Tu devrais venir visiter Sfax aussi !</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Répondre</span>
+                                        <span class="comment-action">Aimer</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="profile-picture">
+                                    <img src="./images/pfp6.jpeg">
+                                </div>
+                                <div class="comment-content">
+                                    <div class="comment-header">
+                                        <span class="comment-author">Yassin</span>
+                                        <span class="comment-time">Il y a 1h</span>
+                                    </div>
+                                    <p class="comment-text">La Tunisie a tellement de beautés cachées 🇹🇳</p>
+                                    <div class="comment-actions">
+                                        <span class="comment-action">Répondre</span>
+                                        <span class="comment-action">Aimer</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="add-comment">
+                            <div class="profile-picture">
+                                <img src="./images/pfp.jpg">
+                            </div>
+                            <input type="text" placeholder="Ajouter un commentaire..." class="comment-input">
+                            <button class="post-comment-btn" data-post="2">Publier</button>
+                        </div>
+                    </div>
                     <caption>
                         <p><b>Sirine Belhaj</b> Tunisie, où la beauté des déserts rencontre la splendeur de la Méditerranée.</p>
                     </caption>
@@ -1005,12 +1240,103 @@
             likedByElement.textContent = newText;
         }
     }
+
+    function toggleComments(postId) {
+        const commentsSection = document.getElementById(`comments-${postId}`);
+        const viewCommentsBtn = document.querySelector(`.view-comments[data-post="${postId}"]`);
+        
+        if (commentsSection.classList.contains('show')) {
+            commentsSection.classList.remove('show');
+            const commentsContainer = commentsSection.querySelector('.comments-container');
+            const commentCount = commentsContainer.querySelectorAll('.comment').length;
+            viewCommentsBtn.textContent = `Voir les ${commentCount} commentaires`;
+        } else {
+            commentsSection.classList.add('show');
+            viewCommentsBtn.textContent = 'Masquer les commentaires';
+        }
+    }
+
+    function addComment(postId, commentText) {
+        const commentsSection = document.getElementById(`comments-${postId}`);
+        const commentsContainer = commentsSection.querySelector('.comments-container');
+        
+        if (commentText.trim() === '') return;
+        
+        const newComment = document.createElement('div');
+        newComment.className = 'comment';
+        newComment.innerHTML = `
+            <div class="profile-picture">
+                <img src="./images/pfp.jpg">
+            </div>
+            <div class="comment-content">
+                <div class="comment-header">
+                    <span class="comment-author">Youssef Najari</span>
+                    <span class="comment-time">À l'instant</span>
+                </div>
+                <p class="comment-text">${commentText}</p>
+                <div class="comment-actions">
+                    <span class="comment-action">Répondre</span>
+                    <span class="comment-action">Aimer</span>
+                </div>
+            </div>
+        `;
+        
+        commentsContainer.appendChild(newComment);
+        
+        const viewCommentsBtn = document.querySelector(`.view-comments[data-post="${postId}"]`);
+        const commentCount = commentsContainer.querySelectorAll('.comment').length;
+        viewCommentsBtn.textContent = `Voir les ${commentCount} commentaires`;
+        
+        const commentInput = commentsSection.querySelector('.comment-input');
+        commentInput.value = '';
+        
+        
+        commentsSection.classList.add('show');
+        viewCommentsBtn.textContent = 'Masquer les commentaires';
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const likeButtons = document.querySelectorAll('.interaction-buttons span:first-child');
         
         likeButtons.forEach(button => {
             button.addEventListener('click', function() {
                 toggleLike(this);
+            });
+        });
+
+        const commentButtons = document.querySelectorAll('.comment-btn');
+        commentButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.closest('.feed').dataset.postId;
+                toggleComments(postId);
+            });
+        })
+        const viewCommentsLinks = document.querySelectorAll('.view-comments');
+        viewCommentsLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const postId = this.dataset.post;
+                toggleComments(postId);
+            });
+        });
+
+        
+        const postCommentButtons = document.querySelectorAll('.post-comment-btn');
+        postCommentButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.dataset.post;
+                const commentInput = this.parentElement.querySelector('.comment-input');
+                addComment(postId, commentInput.value);
+            });
+        });
+
+        
+        const commentInputs = document.querySelectorAll('.comment-input');
+        commentInputs.forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const postId = this.parentElement.querySelector('.post-comment-btn').dataset.post;
+                    addComment(postId, this.value);
+                }
             });
         });
     });
